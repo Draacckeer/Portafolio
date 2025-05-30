@@ -1,0 +1,73 @@
+<section class="py-16 bg-gray-50 mt-8 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+  <div class="container mx-auto px-6 flex flex-col items-center text-center animate-fade-in">
+
+    <div class="relative w-44 h-44 mb-6 group">
+      <img src="assets/img/profile-image.png" [alt]="user.nombre + ' ' + user.apellido"
+           class="w-full h-full rounded-full shadow-2xl border-4 border-blue-500 hover:scale-105 transition-transform duration-300">
+      <div class="absolute inset-0 rounded-full bg-blue-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+    </div>
+
+    <h2 class="text-5xl font-extrabold text-gray-900 leading-relaxed animate-fade-in bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      {{user.nombre}} {{user.apellido}}
+    </h2>
+    <p class="text-xl dark:text-white-900 mt-2 italic animate-slide-in animate-delay-200">
+      Ingeniero de Software | Frontend Developer Junior
+    </p>
+
+    <p class="max-w-3xl dark:text-white-900 mt-6 leading-relaxed animate-fade-in">
+      Egresado de la <strong class="text-blue-600">{{user.universidad}}</strong> con bachiller, especializado en el desarrollo de aplicaciones web con
+      <strong class="text-purple-600">Angular y Spring Boot</strong>. Cuento con una sólida base en <strong class="text-blue-600">Java, JavaScript y TypeScript</strong>.
+    </p>
+
+    <div class="flex gap-6 mt-6 animate-fade-in">
+      <a [href]="'mailto:' + user.email" target="_blank" class="text-gray-600 hover:text-blue-600 transition-transform transform hover:scale-110">
+        <i class="pi pi-envelope text-3xl"></i>
+      </a>
+      <a [href]="user.linkedin" target="_blank" class="text-gray-600 hover:text-blue-600 transition-transform transform hover:scale-110">
+        <i class="pi pi-linkedin text-3xl"></i>
+      </a>
+    </div>
+  </div>
+
+  <section class="py-12">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold leading-relaxed text-gray-900 text-center mb-10 animate-fade-in bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        Experiencia Profesional
+      </h2>
+      <div class="relative border-l-4 border-blue-500 pl-8">
+        <div 
+          class="mb-10 relative animate-slide-in" 
+          *ngFor="let trabajo of user.experiencia;">
+          
+          <div class="absolute left-[-10px] top-1/2 transform -translate-y-1/2 w-5 h-5 bg-blue-500 rounded-full shadow-lg"></div>
+          
+          <div class="bg-white p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ml-10 dark:bg-gray-700">
+            <h3 class="text-2xl font-semibold mb-2 dark:text-white-900">{{ trabajo.empresa }}</h3>
+            <p class="text-lg dark:text-white-900">{{ trabajo.cargo }}</p>
+            <p class="text-sm dark:text-white-900">{{ trabajo.fecha }}</p>
+
+            <ul class="list-disc list-inside mt-4 space-y-2">
+              <li class="dark:text-white-900" *ngFor="let tarea of trabajo.tareas;">
+                {{ tarea }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mt-10 max-w-5xl mx-auto text-center">
+    <h3 class="text-3xl font-bold leading-relaxed text-gray-900 mt-8 mb-6 animate-fade-in bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      🚀 Tecnologías y habilidades
+    </h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <span
+        *ngFor="let tech of technologies"
+        class="px-6 py-3 text-white rounded-lg shadow-md transform hover:scale-110 transition duration-300"
+        [ngClass]="[tech.bgColor, tech.hoverColor]">
+        {{ tech.name }}
+      </span>
+    </div>
+  </div>
+</section>
